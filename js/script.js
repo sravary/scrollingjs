@@ -6,4 +6,16 @@ function animateItems(items) {
         }, 100 * i); //100 x i is the index of each loop multiplied by 100ms to delay each and every item.
     });
 }
-animateItems($('.card'));
+animateItems($('.services .card'));
+
+function isFullyVisible(element) {
+    let bottomOfElement = element.offset().top + element.height();
+    let isVisible = bottomOfElement <= ($(window).scrollTop() + $(window).height());
+    return isVisible;
+}
+
+$(window).scroll(function() {
+    if (isFullyVisible($('.feature').first())) {
+        animateItems($('.feature'));
+    }
+});
